@@ -1,0 +1,17 @@
+package com.jumia.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class DataSelected {
+	private String selectedCountrySuffix;
+	private String selectedStatus;
+}

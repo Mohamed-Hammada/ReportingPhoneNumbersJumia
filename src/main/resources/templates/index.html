@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Customer</title>
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+	rel="stylesheet" />
+
+</head>
+<body>
+	<h1 align="center">Customers</h1>
+
+
+	<form action="#" th:action="@{/listCustomers}"
+		th:object="${dataSelected}" method="Post">
+
+		<div style="width: 50%">
+			<div class="label">Country</div>
+			<div style="border: 1px solid black">
+				<select class="select"
+					th:field="${dataSelected.selectedCountrySuffix}"
+					name="selected-country">
+					<option value="ALL">ALL</option>
+					<option th:each="country : ${countriesMetaDataList}"
+						th:value="${country.phoneStartsWith}" th:text="${country.name}"></option>
+				</select>
+			</div>
+			<div class="label">State</div>
+			<div style="border: 1px solid black">
+				<select th:field="${dataSelected.selectedStatus}"
+					name="selected-state">
+					<option value="ALL">ALL</option>
+					<option value="Valid">Valid</option>
+					<option value="Not Valid">NOT Valid</option>
+				</select>
+			</div>
+		</div>
+		<button class="button" type="submit">Search</button>
+
+	</form>
+	<div th:if="${customerPage != null}">
+		<table>
+			<thead>
+				<tr>
+					<td>#</td>
+					<td>Name</td>
+					<td>Phone</td>
+					<td>Code</td>
+					<td>State</td>
+					<td>Country</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="customer : ${customerPage}">
+					<td th:text="${customer.id}"></td>
+					<td th:text="${customer.name}"></td>
+					<td th:text="${customer.phone}"></td>
+					<td th:text="${customer.code}"></td>
+					<td th:text="${customer.state}"></td>
+					<td th:text="${customer.country}"></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
